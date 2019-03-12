@@ -20,6 +20,12 @@ class MyApp extends StatelessWidget {
         "page_Button": (context) => PageButtonRoute(),
         "page_Icon": (context) => IconRoute(),
         "page_ScrollView": (context) => SingleChildScrollViewTestRoute(),
+        "ListViewbuilder": (context) => ListViewbuilder(),
+        "ListViewSeparated": (context) => ListViewSeparated(),
+        "InfiniteGridView": (context) => InfiniteGridView(),
+        "GridTileDemo": (context) => GridTileDemo(),
+        "SliverGridDemo": (context) => SliverGridDemo(),
+        "SliverGridDemo2": (context) => SliverGridDemo2(),
       },
       //应用首页路由
       home: new MyHomePage(title: '首页'),
@@ -94,11 +100,46 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             FlatButton(
-              child: Text("page_ListViewRote"),
+              child: Text("ListViewbuilder"),
               textColor: Colors.blue,
               onPressed: () {
                 //导航到新路由
-                Navigator.pushNamed(context, "page_ScrollView");
+                Navigator.pushNamed(context, "ListViewbuilder");
+              },
+            ),
+            FlatButton(
+              child: Text("ListViewSeparated"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, "ListViewSeparated");
+              },
+            ),
+            FlatButton(
+              child: Text("GridView"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, "InfiniteGridView");
+              },
+            ),
+            FlatButton(
+              child: Text("GridTileDemo"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, "GridTileDemo");
+              },
+            ),
+            FlatButton(
+              child: Text("SliverGridDemo"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, "SliverGridDemo");
+              },
+            ),
+            FlatButton(
+              child: Text("SliverGridDemo2"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, "SliverGridDemo2");
               },
             ),
           ],
@@ -320,4 +361,498 @@ class SingleChildScrollViewTestRoute extends StatelessWidget {
   }
 }
 
-//listview
+//listview.builder
+class ListViewbuilder extends StatefulWidget {
+  @override
+  createState() => new ListViewbuilderState();
+}
+
+class ListViewbuilderState extends State<ListViewbuilder> {
+  final _suggestions = <WordPair>[];
+  final _saved = new Set<WordPair>();
+  final _biggerFont = const TextStyle(fontSize: 18.0);
+  @override
+  Widget build(BuildContext context) {
+    // final wordPair = new WordPair.random();
+    // return new Text(wordPair.asPascalCase);
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('ListView.builder'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+        ],
+      ),
+      body: _buildSuggestions(),
+    );
+  }
+
+  Widget _buildSuggestions() {
+    return new ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: 40, // item 的个数
+        // itemExtent: 50.0, // 如果为非null，则强制子项在滚动方向上具有给定范围
+        padding: const EdgeInsets.all(16.0),
+        // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
+        // 在偶数行，该函数会为单词对添加一个ListTile row.
+        // 在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。
+        // 注意，在小屏幕上，分割线看起来可能比较吃力。
+        itemBuilder: (context, i) {
+          // 在每一列之前，添加一个1像素高的分隔线widget
+          if (i.isOdd) return new Divider();
+
+          // 语法 "i ~/ 2" 表示i除以2，但返回值是整形（向下取整），比如i为：1, 2, 3, 4, 5
+          // 时，结果为0, 1, 1, 2, 2， 这可以计算出ListView中减去分隔线后的实际单词对数量
+          final index = i ~/ 2;
+          // final index = i;
+          // 如果是建议列表中最后一个单词对
+          if (index >= _suggestions.length) {
+            // ...接着再生成10个单词对，然后添加到建议列表
+            _suggestions.addAll(generateWordPairs().take(10));
+          }
+          return _buildRow(_suggestions[index], index);
+        });
+  }
+
+  Widget _buildRow(WordPair pair, index) {
+    final alreadySaved = _saved.contains(pair);
+    return new ListTile(
+      title: new Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      ), //item标题
+      leading: Icon(Icons.keyboard), //item 前置图标
+      subtitle: Text("subtitle $index"), // item 副标题
+      trailing: new Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+      ), //item后置图标
+      isThreeLine: false, //是否三行显示
+      dense: true, // item 直观感受是整体大小
+      contentPadding: EdgeInsets.all(2.0), // item 内容内边距
+      onTap: () {
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      }, //item 点击事件
+      onLongPress: () {
+        print('长按:$index');
+      }, //长按事件
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = ListTile.divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text('Saved Suggestions'),
+            ),
+            body: new ListView(children: divided),
+          );
+        },
+      ),
+    );
+  }
+}
+
+//ListView.Separated
+class ListViewSeparated extends StatefulWidget {
+  @override
+  createState() => new ListViewSeparatedState();
+}
+
+class ListViewSeparatedState extends State<ListViewSeparated> {
+  final _suggestions = <WordPair>[];
+  final _saved = new Set<WordPair>();
+  final _biggerFont = const TextStyle(fontSize: 18.0);
+  @override
+  Widget build(BuildContext context) {
+    // final wordPair = new WordPair.random();
+    // return new Text(wordPair.asPascalCase);
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('ListView.separated'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+        ],
+      ),
+      body: _buildSuggestions(),
+    );
+  }
+
+  Widget _buildSuggestions() {
+    return new ListView.separated(
+        scrollDirection: Axis.vertical,
+        itemCount: 100, // item 的个数
+        padding: const EdgeInsets.all(16.0),
+        separatorBuilder: (BuildContext context, int index) =>
+            Divider(height: 1.0, color: Colors.blue),
+        itemBuilder: (context, i) {
+          // final index = i;
+          // 如果是建议列表中最后一个单词对
+          if (i >= _suggestions.length) {
+            // ...接着再生成10个单词对，然后添加到建议列表
+            _suggestions.addAll(generateWordPairs().take(10));
+          }
+          return _buildRow(_suggestions[i], i);
+        });
+  }
+
+  Widget _buildRow(WordPair pair, index) {
+    final alreadySaved = _saved.contains(pair);
+    return new ListTile(
+      title: new Text(
+        pair.asPascalCase,
+        style: _biggerFont,
+      ), //item标题
+      leading: Icon(Icons.phone), //item 前置图标
+      subtitle: Text(
+          "phone: $index$index$index$index$index$index$index$index$index$index$index$index"), // item 副标题
+      trailing: new Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+      ), //item后置图标
+      isThreeLine: false, //是否三行显示
+      dense: true, // item 直观感受是整体大小
+      contentPadding: EdgeInsets.all(2.0), // item 内容内边距
+      onTap: () {
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      }, //item 点击事件
+      onLongPress: () {
+        print('长按:$index');
+      }, //长按事件
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = ListTile.divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text('Saved Suggestions'),
+            ),
+            body: new ListView(children: divided),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class InfiniteGridView extends StatefulWidget {
+  @override
+  _InfiniteGridViewState createState() => new _InfiniteGridViewState();
+}
+
+class _InfiniteGridViewState extends State<InfiniteGridView> {
+  List<IconData> _icons = []; //保存Icon数据
+
+  // @override
+  // void initState() {
+  //   // 初始化数据
+  //   _retrieveIcons();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    void _onPressed(IconData icon) {
+      print('点击:$icon');
+    }
+
+    _retrieveIcons(); // 初始化数据
+
+    return new Scaffold(
+        appBar: new AppBar(title: new Text('ListView.builder')),
+        body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4, //每行三列
+                childAspectRatio: 1.0 //显示区域宽高相等
+                ),
+            itemCount: _icons.length,
+            itemBuilder: (context, index) {
+              //如果显示到最后一个并且Icon总数小于200时继续获取数据
+              if (index == _icons.length - 1 && _icons.length < 200) {
+                _retrieveIcons();
+              }
+              return IconButton(
+                  icon: new Icon(_icons[index]),
+                  onPressed: () => _onPressed(_icons[index]));
+            }));
+  }
+
+  //模拟异步获取数据
+  void _retrieveIcons() {
+    Future.delayed(Duration(milliseconds: 1)).then((e) {
+      setState(() {
+        _icons.addAll([
+          Icons.ac_unit,
+          Icons.airport_shuttle,
+          Icons.all_inclusive,
+          Icons.beach_access,
+          Icons.cake,
+          Icons.free_breakfast
+        ]);
+      });
+    });
+  }
+}
+
+class GridTileDemo extends StatefulWidget {
+  _GridTileDemo createState() => _GridTileDemo();
+}
+
+class _GridTileDemo extends State<GridTileDemo> {
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("GridTile"),
+        ),
+        body: Container(
+            // height: 400,
+            color: Color(0xffc91b3a),
+            child: GridView.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10.0,
+              crossAxisSpacing: 4.0,
+              padding: const EdgeInsets.all(4.0),
+              childAspectRatio: 1.3,
+              children: <Widget>[
+                GridTile(
+                  header: GridTileBar(
+                    title: Text('title'),
+                    subtitle: Text('subtitle'),
+                    leading: Icon(Icons.add),
+                    trailing: Text("trailing"),
+                  ),
+                  child: Container(),
+                ),
+                GridPaper(
+                  color: Colors.red,
+                  child: Image.network(
+                      'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                      scale: 1,
+                      fit: BoxFit.cover),
+                ),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                GridTile(
+                  header: Text("标题", style: TextStyle(color: Colors.white)),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: Text("内容", style: TextStyle(color: Colors.white)),
+                  ),
+                  footer: Text("底部", style: TextStyle(color: Colors.white)),
+                ),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                GridTile(
+                  header: Text("标题", style: TextStyle(color: Colors.white)),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: IconButton(
+                      icon: Icon(Icons.thumb_up),
+                      onPressed: () => {},
+                    ),
+                  ),
+                  footer: Text("底部", style: TextStyle(color: Colors.white)),
+                ),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+                Image.network(
+                    'https://flutter.io/assets/homepage/news-2-599aefd56e8aa903ded69500ef4102cdd8f988dab8d9e4d570de18bdb702ffd4.png',
+                    scale: 1,
+                    fit: BoxFit.cover),
+              ],
+            )));
+  }
+}
+
+class SliverGridDemo extends StatefulWidget {
+  _SliverGridDemo createState() => _SliverGridDemo();
+}
+
+class _SliverGridDemo extends State<SliverGridDemo> {
+  Widget showCustomScrollView() {
+    return Scaffold(
+        appBar: AppBar(title: Text("SliverGridDemo")),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverGrid(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200.0,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                childAspectRatio: 4.0,
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    color: Colors.cyan[100 * (index % 5)],
+                    child: Text('grid item $index'),
+                  );
+                },
+                childCount: 40,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget build(BuildContext context) {
+    return Container(color: Color(0xffc91b3a), child: showCustomScrollView());
+  }
+}
+
+// class SliverGridDemo2 extends StatefulWidget {
+//   _SliverGridDemo2 createState() => _SliverGridDemo2();
+// }
+
+// class _SliverGridDemo2 extends State<SliverGridDemo2> {
+class SliverGridDemo2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: CustomScrollView(
+        slivers: <Widget>[
+          //AppBar，包含一个导航栏
+          SliverAppBar(
+            pinned: true,
+            expandedHeight: 250.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text('Demo'),
+              background: Image.asset(
+                "assets/nothing.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          SliverPadding(
+            padding: const EdgeInsets.all(8.0),
+            sliver: new SliverGrid(
+              //Grid
+              gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, //Grid按两列显示
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 10.0,
+                childAspectRatio: 4.0,
+              ),
+              delegate: new SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  //创建子widget
+                  return new Container(
+                    alignment: Alignment.center,
+                    color: Colors.cyan[100 * (index % 9)],
+                    child: new Text('grid item $index'),
+                  );
+                },
+                childCount: 20,
+              ),
+            ),
+          ),
+          //List
+          new SliverFixedExtentList(
+            itemExtent: 50.0,
+            delegate: new SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+              //创建列表项
+              return new Container(
+                alignment: Alignment.center,
+                color: Colors.lightBlue[100 * (index % 9)],
+                child: new Text('list item $index'),
+              );
+            }, childCount: 50 //50个列表项
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+}
