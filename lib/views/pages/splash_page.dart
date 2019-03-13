@@ -84,7 +84,7 @@ class SplashPageState extends State<SplashPage> {
     setState(() {
       _status = 1;
     });
-    _timerUtil = new TimerUtil(mTotalTime: 3 * 1000);
+    _timerUtil = new TimerUtil(mTotalTime: 20 * 1000);
     _timerUtil.setOnTimerTickCallback((int tick) {
       double _tick = tick / 1000;
       setState(() {
@@ -207,12 +207,13 @@ class SplashPageState extends State<SplashPage> {
         },
         child: new Container(
           alignment: Alignment.center,
-          child: new CachedNetworkImage(
-            width: double.infinity,
-            height: double.infinity,
-            fit: BoxFit.fill,
-            imageUrl: _splashModel.imgUrl,
-          ),
+          child: Image(image: AssetImage("assets/logon.png"), width: 100.0),
+          // child: new CachedNetworkImage(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          //   fit: BoxFit.fill,
+          //   imageUrl: _splashModel.imgUrl,
+          // ),
         ),
       ),
     );
@@ -229,12 +230,14 @@ class SplashPageState extends State<SplashPage> {
           child: new Stack(
             children: <Widget>[
               new Center(
-                child: Image.asset(
-                  Utils.getImgPath(Ids.icon_splash_logo),
-                  width: 120,
-                  height: 90,
-                  //fit: BoxFit.cover,
-                ),
+                // child: Image.asset(
+                //   Utils.getImgPath(Ids.icon_splash_logo),
+                //   width: 120,
+                //   height: 90,
+                //   //fit: BoxFit.cover,
+                // ),//滴滴标志
+                child: Image(
+                    image: AssetImage("assets/nothing.png"), width: 100.0),
               ),
               _buildCountDown()
             ],

@@ -71,6 +71,7 @@ flutter:
   assets:
     - assets/nothing.png
     - assets/avatar.png
+    - assets/logon.png
     - assets/images/
     - assets/images/3.0x/
     - assets/data/china.json
