@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
       //应用首页路由
       // home: BottomNavigationWidget(),
       home: NavigationKeepAlive(),
-      // home: new App(),
     );
   }
 }
