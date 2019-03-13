@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         "GridTileDemo": (context) => GridTileDemo(),
         "SliverGridDemo": (context) => SliverGridDemo(),
         "SliverGridDemo2": (context) => SliverGridDemo2(),
+        "TabBarDemo": (context) => TabBarDemo(),
       },
       //应用首页路由
       home: new MyHomePage(title: '首页'),
@@ -41,7 +42,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State with SingleTickerProviderStateMixin {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -50,101 +51,145 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  ScrollController _scrollViewController;
+  TabController _tabController;
+  List tabs = ["新闻", "历史", "图片"];
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollViewController = ScrollController();
+    _tabController =
+        // TabController(vsync: this, length: 6); // 和下面的 TabBar.tabs 数量对应
+        TabController(length: tabs.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _scrollViewController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     //Scaffold 是 Material库中提供的一个widget, 它提供了默认的导航栏、标题和包含主屏幕widget树的body属性。widget树可以很复杂
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Container(
-        child: new Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RandomWordsWidget(),
-            FlatButton(
-              child: Text("$_counter"),
-              textColor: Colors.blue,
-              onPressed: () {
-                //导航到新路由
-                Navigator.pushNamed(context, "page_Text");
-
-                // Navigator.push(context,
-                //     new MaterialPageRoute(builder: (context) {
-                //   return new NewRoute();
-                // }));
-              },
-            ),
-            FlatButton(
-              child: Text("Button"),
-              textColor: Colors.blue,
-              onPressed: () {
-                //导航到新路由
-                Navigator.pushNamed(context, "page_Button");
-              },
-            ),
-            FlatButton(
-              child: Text("Icon"),
-              textColor: Colors.blue,
-              onPressed: () {
-                //导航到新路由
-                Navigator.pushNamed(context, "page_Icon");
-              },
-            ),
-            FlatButton(
-              child: Text("page_ScrollView"),
-              textColor: Colors.blue,
-              onPressed: () {
-                //导航到新路由
-                Navigator.pushNamed(context, "page_ScrollView");
-              },
-            ),
-            FlatButton(
-              child: Text("ListViewbuilder"),
-              textColor: Colors.blue,
-              onPressed: () {
-                //导航到新路由
-                Navigator.pushNamed(context, "ListViewbuilder");
-              },
-            ),
-            FlatButton(
-              child: Text("ListViewSeparated"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, "ListViewSeparated");
-              },
-            ),
-            FlatButton(
-              child: Text("GridView"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, "InfiniteGridView");
-              },
-            ),
-            FlatButton(
-              child: Text("GridTileDemo"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, "GridTileDemo");
-              },
-            ),
-            FlatButton(
-              child: Text("SliverGridDemo"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, "SliverGridDemo");
-              },
-            ),
-            FlatButton(
-              child: Text("SliverGridDemo2"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, "SliverGridDemo2");
-              },
-            ),
-          ],
+        title: new Text("首页"),
+        bottom: TabBar(
+          isScrollable: true,
+          controller: _tabController,
+          tabs: tabs.map((e) => Tab(text: e)).toList(),
+          // tabs: <Widget>[
+          //    Tab(text: "Tabs 1"),
+          //    Tab(text: "Tabs 2"),
+          //    Tab(text: "Tabs 3"),
+          //    Tab(text: "Tabs 4"),
+          //    Tab(text: "Tabs 5"),
+          //    Tab(text: "Tabs 6"),
+          // ],
         ),
       ),
+      body: TabBarView(controller: _tabController, children: <Widget>[
+        new Container(
+          child: new Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RandomWordsWidget(),
+              FlatButton(
+                child: Text("$_counter"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  //导航到新路由
+                  Navigator.pushNamed(context, "page_Text");
+
+                  // Navigator.push(context,
+                  //     new MaterialPageRoute(builder: (context) {
+                  //   return new NewRoute();
+                  // }));
+                },
+              ),
+              FlatButton(
+                child: Text("Button"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  //导航到新路由
+                  Navigator.pushNamed(context, "page_Button");
+                },
+              ),
+              FlatButton(
+                child: Text("Icon"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  //导航到新路由
+                  Navigator.pushNamed(context, "page_Icon");
+                },
+              ),
+              FlatButton(
+                child: Text("page_ScrollView"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  //导航到新路由
+                  Navigator.pushNamed(context, "page_ScrollView");
+                },
+              ),
+              FlatButton(
+                child: Text("ListViewbuilder"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  //导航到新路由
+                  Navigator.pushNamed(context, "ListViewbuilder");
+                },
+              ),
+              FlatButton(
+                child: Text("ListViewSeparated"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "ListViewSeparated");
+                },
+              ),
+              FlatButton(
+                child: Text("GridView"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "InfiniteGridView");
+                },
+              ),
+              FlatButton(
+                child: Text("GridTileDemo"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "GridTileDemo");
+                },
+              ),
+              FlatButton(
+                child: Text("SliverGridDemo"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "SliverGridDemo");
+                },
+              ),
+              FlatButton(
+                child: Text("SliverGridDemo2"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "SliverGridDemo2");
+                },
+              ),
+              FlatButton(
+                child: Text("TabBarDemo"),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, "TabBarDemo");
+                },
+              ),
+            ],
+          ),
+        ),
+        Text('历史页面'),
+        Text('图片页面'),
+      ]),
       floatingActionButton: new FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -854,5 +899,70 @@ class SliverGridDemo2 extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class TabBarDemo extends StatefulWidget {
+  const TabBarDemo() : super();
+
+  @override
+  State<StatefulWidget> createState() => _TabBarDemo();
+}
+
+// AppBar 默认的实例,有状态
+class _TabBarDemo extends State with SingleTickerProviderStateMixin {
+  ScrollController _scrollViewController;
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollViewController = ScrollController();
+    _tabController =
+        TabController(vsync: this, length: 6); // 和下面的 TabBar.tabs 数量对应
+  }
+
+  @override
+  void dispose() {
+    _scrollViewController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 如果省略了 leading ，但 AppBar 在带有 Drawer 的 Scaffold 中，则会插入一个 button 以打开 Drawer。
+    // 否则，如果最近的 Navigator 具有任何先前的 router ，则会插入BackButton。
+    // 这种行为可以通过设置来关闭automaticallyImplyLeading 为false。在这种情况下，空的 leading widget 将导致 middle/title widget 拉��开始。
+    return SizedBox(
+        height: 500,
+        child: Scaffold(
+          appBar: AppBar(
+            // 大量配置属性参考 SliverAppBar 示例
+            title: Text('TabBar'),
+            // leading: Icon(Icons.home),
+            // backgroundColor: Colors.amber[1000],
+            bottom: TabBar(
+              isScrollable: true,
+              controller: _tabController,
+              tabs: <Widget>[
+                Tab(text: "Tabs 1"),
+                Tab(text: "Tabs 2"),
+                Tab(text: "Tabs 3"),
+                Tab(text: "Tabs 4"),
+                Tab(text: "Tabs 5"),
+                Tab(text: "Tabs 6"),
+              ],
+            ),
+          ),
+          body: TabBarView(controller: _tabController, children: <Widget>[
+            Text('TabsView 1'),
+            Text('TabsView 2'),
+            Text('TabsView 3'),
+            Text('TabsView 4'),
+            Text('TabsView 5'),
+            Text('TabsView 6'),
+          ]),
+        ));
   }
 }
