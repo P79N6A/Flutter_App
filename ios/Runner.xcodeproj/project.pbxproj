@@ -12,14 +12,30 @@
 		3B80C3941E831B6300D905FE /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; };
 		3B80C3951E831B6300D905FE /* App.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B80C3931E831B6300D905FE /* App.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		41DB27611DE047427EA2C569 /* libPods-Runner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201B1BF95763420ACC31F1D4 /* libPods-Runner.a */; };
+		6AA3F06C2239474B001B5EBA /* iPad Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F05C2239474B001B5EBA /* iPad Landscape.png */; };
+		6AA3F06D2239474B001B5EBA /* iPhone Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F05D2239474B001B5EBA /* iPhone Portrait@2x.png */; };
+		6AA3F06E2239474B001B5EBA /* iPhone X_XS Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F05E2239474B001B5EBA /* iPhone X_XS Portrait.png */; };
+		6AA3F06F2239474B001B5EBA /* iPhone Landscape-Retina HD 5.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F05F2239474B001B5EBA /* iPhone Landscape-Retina HD 5.5.png */; };
+		6AA3F0702239474B001B5EBA /* iPhone X_XS Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0602239474B001B5EBA /* iPhone X_XS Landscape.png */; };
+		6AA3F0712239474B001B5EBA /* iPad Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0612239474B001B5EBA /* iPad Portrait.png */; };
+		6AA3F0722239474B001B5EBA /* iPhone Portrait-Retina HD 4.7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0622239474B001B5EBA /* iPhone Portrait-Retina HD 4.7.png */; };
+		6AA3F0732239474B001B5EBA /* iPhone XS Max Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0632239474B001B5EBA /* iPhone XS Max Portrait.png */; };
+		6AA3F0742239474B001B5EBA /* iPhone Portrait-Retina 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0642239474B001B5EBA /* iPhone Portrait-Retina 4.png */; };
+		6AA3F0752239474B001B5EBA /* iPad Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0652239474B001B5EBA /* iPad Landscape@2x.png */; };
+		6AA3F0762239474B001B5EBA /* iPad Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0662239474B001B5EBA /* iPad Portrait@2x.png */; };
+		6AA3F0772239474B001B5EBA /* iPhone XR Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0672239474B001B5EBA /* iPhone XR Landscape.png */; };
+		6AA3F0782239474B001B5EBA /* iPhone XR Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0682239474B001B5EBA /* iPhone XR Portrait.png */; };
+		6AA3F0792239474B001B5EBA /* iPhone Portrait-Retina HD 5.5.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F0692239474B001B5EBA /* iPhone Portrait-Retina HD 5.5.png */; };
+		6AA3F07A2239474B001B5EBA /* iPhone XS Max Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F06A2239474B001B5EBA /* iPhone XS Max Landscape.png */; };
+		6AA3F07B2239474B001B5EBA /* flutter go.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F06B2239474B001B5EBA /* flutter go.png */; };
+		6AA3F07E2239476F001B5EBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F07C2239476F001B5EBA /* LaunchScreen.storyboard */; };
+		6AA3F080223947D0001B5EBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3F07F223947D0001B5EBA /* Assets.xcassets */; };
 		9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; };
 		9705A1C71CF904A300538489 /* Flutter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9740EEBA1CF902C7004384FC /* Flutter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9740EEB21CF90195004384FC /* Debug.xcconfig */; };
 		978B8F6F1D3862AE00F588F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */; };
 		97C146F31CF9000F007C117D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C146F21CF9000F007C117D /* main.m */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
-		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
-		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +60,24 @@
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		3B80C3931E831B6300D905FE /* App.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = App.framework; path = Flutter/App.framework; sourceTree = "<group>"; };
 		48678F3E1F571C3E9E9BB3FC /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		6AA3F05C2239474B001B5EBA /* iPad Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad Landscape.png"; sourceTree = "<group>"; };
+		6AA3F05D2239474B001B5EBA /* iPhone Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Portrait@2x.png"; sourceTree = "<group>"; };
+		6AA3F05E2239474B001B5EBA /* iPhone X_XS Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X_XS Portrait.png"; sourceTree = "<group>"; };
+		6AA3F05F2239474B001B5EBA /* iPhone Landscape-Retina HD 5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Landscape-Retina HD 5.5.png"; sourceTree = "<group>"; };
+		6AA3F0602239474B001B5EBA /* iPhone X_XS Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone X_XS Landscape.png"; sourceTree = "<group>"; };
+		6AA3F0612239474B001B5EBA /* iPad Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad Portrait.png"; sourceTree = "<group>"; };
+		6AA3F0622239474B001B5EBA /* iPhone Portrait-Retina HD 4.7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Portrait-Retina HD 4.7.png"; sourceTree = "<group>"; };
+		6AA3F0632239474B001B5EBA /* iPhone XS Max Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XS Max Portrait.png"; sourceTree = "<group>"; };
+		6AA3F0642239474B001B5EBA /* iPhone Portrait-Retina 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Portrait-Retina 4.png"; sourceTree = "<group>"; };
+		6AA3F0652239474B001B5EBA /* iPad Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad Landscape@2x.png"; sourceTree = "<group>"; };
+		6AA3F0662239474B001B5EBA /* iPad Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad Portrait@2x.png"; sourceTree = "<group>"; };
+		6AA3F0672239474B001B5EBA /* iPhone XR Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XR Landscape.png"; sourceTree = "<group>"; };
+		6AA3F0682239474B001B5EBA /* iPhone XR Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XR Portrait.png"; sourceTree = "<group>"; };
+		6AA3F0692239474B001B5EBA /* iPhone Portrait-Retina HD 5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Portrait-Retina HD 5.5.png"; sourceTree = "<group>"; };
+		6AA3F06A2239474B001B5EBA /* iPhone XS Max Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone XS Max Landscape.png"; sourceTree = "<group>"; };
+		6AA3F06B2239474B001B5EBA /* flutter go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "flutter go.png"; path = "../../flutter-go-master/ios/flutter go.png"; sourceTree = "<group>"; };
+		6AA3F07D2239476F001B5EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../../flutter-go-master/ios/Runner/Base.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		6AA3F07F223947D0001B5EBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../flutter-go-master/ios/Runner/Assets.xcassets"; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,8 +88,6 @@
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C146F21CF9000F007C117D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		97C146FB1CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7275BB655AFC8416CA20B7D /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +106,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6AA3F05B2239474B001B5EBA /* launch */ = {
+			isa = PBXGroup;
+			children = (
+				6AA3F05C2239474B001B5EBA /* iPad Landscape.png */,
+				6AA3F05D2239474B001B5EBA /* iPhone Portrait@2x.png */,
+				6AA3F05E2239474B001B5EBA /* iPhone X_XS Portrait.png */,
+				6AA3F05F2239474B001B5EBA /* iPhone Landscape-Retina HD 5.5.png */,
+				6AA3F0602239474B001B5EBA /* iPhone X_XS Landscape.png */,
+				6AA3F0612239474B001B5EBA /* iPad Portrait.png */,
+				6AA3F0622239474B001B5EBA /* iPhone Portrait-Retina HD 4.7.png */,
+				6AA3F0632239474B001B5EBA /* iPhone XS Max Portrait.png */,
+				6AA3F0642239474B001B5EBA /* iPhone Portrait-Retina 4.png */,
+				6AA3F0652239474B001B5EBA /* iPad Landscape@2x.png */,
+				6AA3F0662239474B001B5EBA /* iPad Portrait@2x.png */,
+				6AA3F0672239474B001B5EBA /* iPhone XR Landscape.png */,
+				6AA3F0682239474B001B5EBA /* iPhone XR Portrait.png */,
+				6AA3F0692239474B001B5EBA /* iPhone Portrait-Retina HD 5.5.png */,
+				6AA3F06A2239474B001B5EBA /* iPhone XS Max Landscape.png */,
+			);
+			name = launch;
+			path = "../../flutter-go-master/ios/launch";
+			sourceTree = "<group>";
+		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +145,8 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				6AA3F05B2239474B001B5EBA /* launch */,
+				6AA3F06B2239474B001B5EBA /* flutter go.png */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -112,8 +169,8 @@
 				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
 				7AFFD8EE1D35381100E5BB4D /* AppDelegate.m */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
-				97C146FD1CF9000F007C117D /* Assets.xcassets */,
-				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
+				6AA3F07F223947D0001B5EBA /* Assets.xcassets */,
+				6AA3F07C2239476F001B5EBA /* LaunchScreen.storyboard */,
 				97C147021CF9000F007C117D /* Info.plist */,
 				97C146F11CF9000F007C117D /* Supporting Files */,
 				1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */,
@@ -145,7 +202,6 @@
 				F7275BB655AFC8416CA20B7D /* Pods-Runner.release.xcconfig */,
 				48678F3E1F571C3E9E9BB3FC /* Pods-Runner.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -212,11 +268,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				6AA3F06D2239474B001B5EBA /* iPhone Portrait@2x.png in Resources */,
+				6AA3F07A2239474B001B5EBA /* iPhone XS Max Landscape.png in Resources */,
+				6AA3F06C2239474B001B5EBA /* iPad Landscape.png in Resources */,
+				6AA3F07B2239474B001B5EBA /* flutter go.png in Resources */,
+				6AA3F080223947D0001B5EBA /* Assets.xcassets in Resources */,
+				6AA3F0702239474B001B5EBA /* iPhone X_XS Landscape.png in Resources */,
+				6AA3F0722239474B001B5EBA /* iPhone Portrait-Retina HD 4.7.png in Resources */,
+				6AA3F0762239474B001B5EBA /* iPad Portrait@2x.png in Resources */,
+				6AA3F0712239474B001B5EBA /* iPad Portrait.png in Resources */,
+				6AA3F0792239474B001B5EBA /* iPhone Portrait-Retina HD 5.5.png in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				6AA3F0752239474B001B5EBA /* iPad Landscape@2x.png in Resources */,
+				6AA3F0782239474B001B5EBA /* iPhone XR Portrait.png in Resources */,
+				6AA3F06F2239474B001B5EBA /* iPhone Landscape-Retina HD 5.5.png in Resources */,
 				9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */,
-				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				6AA3F06E2239474B001B5EBA /* iPhone X_XS Portrait.png in Resources */,
+				6AA3F0772239474B001B5EBA /* iPhone XR Landscape.png in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+				6AA3F07E2239476F001B5EBA /* LaunchScreen.storyboard in Resources */,
+				6AA3F0732239474B001B5EBA /* iPhone XS Max Portrait.png in Resources */,
+				6AA3F0742239474B001B5EBA /* iPhone Portrait-Retina 4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,20 +383,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		6AA3F07C2239476F001B5EBA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AA3F07D2239476F001B5EBA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				97C146FB1CF9000F007C117D /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				97C147001CF9000F007C117D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -383,6 +455,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch2;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = HA4X85AZ3G;
 				ENABLE_BITCODE = NO;
@@ -509,6 +582,7 @@
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch2;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = HA4X85AZ3G;
 				ENABLE_BITCODE = NO;
@@ -533,6 +607,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = Launch2;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = HA4X85AZ3G;
 				ENABLE_BITCODE = NO;
