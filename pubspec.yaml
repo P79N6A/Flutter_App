@@ -33,7 +33,7 @@ dependencies:
   # Dart 常用工具类库 https://github.com/Sky24n/common_utils
   common_utils: ^1.0.9
   # Flutter 常用工具类库 https://github.com/Sky24n/flustars
-  flustars: ^0.1.9
+  flustars: ^0.2.5
   # Flutter 国际化/多语言库 https://github.com/Sky24n/fluintl
   fluintl: ^0.1.2
   # Flutter 城市列表 https://github.com/flutterchina/azlistview
@@ -43,8 +43,6 @@ dependencies:
   dio: ^1.0.13
   # rxdart https://github.com/ReactiveX/rxdart
   rxdart: ^0.18.1
-  # https://github.com/renefloor/flutter_cached_network_image
-  cached_network_image: ^0.5.0
   # https://github.com/flutter/plugins/tree/master/packages/url_launcher
   url_launcher: ^4.0.1
   # https://github.com/peng8350/flutter_pulltorefresh
@@ -55,8 +53,7 @@ dependencies:
   webview_flutter: ^0.3.3+1
   # https://github.com/flutterchina/flukit.
   flukit: ^1.0.0
-  #key-value 持久存储
-  shared_preferences: 0.4.3
+  shared_preferences: ^0.5.1
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +70,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/nothing.png
+    - assets/didi_logo.png
     - assets/avatar.png
     - assets/logon.png
     - assets/images/

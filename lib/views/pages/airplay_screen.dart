@@ -8,7 +8,6 @@ class AirPlayScreen extends StatefulWidget {
 class _AirPlayScreenState extends State<AirPlayScreen>
     with AutomaticKeepAliveClientMixin {
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 
   int _counter = 0;

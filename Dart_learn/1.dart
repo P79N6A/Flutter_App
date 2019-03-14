@@ -1,18 +1,15 @@
-import 'dart:math';
-
-class Point {
-  final num x;
-  final num y;
-  final num distanceFromOrigin;
-
-  Point(x, y)
-      : x = x,
-        y = y,
-        distanceFromOrigin = sqrt(x * x + y * y);
+//定义打印数字方法
+printNumber(num Number) {
+  print("The number is $Number");
 }
 
-main() {
-  var p = new Point(3, 4);
-  print(p.x);
-  print(p.distanceFromOrigin);
+//执行程序入口
+void main() {
+  //定义初始化一个变量
+  var number;
+  int _status = 0;
+  print((_status == 1));
+
+  //调用打印数字方法
+  printNumber(number);
 }

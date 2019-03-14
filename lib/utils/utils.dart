@@ -1,11 +1,9 @@
 import 'package:common_utils/common_utils.dart';
-import 'package:flustars/flustars.dart';
+
 import 'package:flutter/material.dart';
 import 'package:myApp/common/common.dart';
-import 'package:myApp/common/sp_helper.dart';
 import 'package:myApp/models/models.dart';
 import 'package:myApp/res/index.dart';
-import 'package:lpinyin/lpinyin.dart';
 
 class Utils {
   static String getImgPath(String name, {String format: 'png'}) {

@@ -1,10 +1,5 @@
-import 'dart:convert';
-
-import 'package:common_utils/common_utils.dart';
 import 'package:myApp/common/common.dart';
-import 'package:myApp/common/sp_helper.dart';
 import 'package:myApp/models/models.dart';
-import 'package:myApp/utils/index.dart';
 
 //模拟网络请求数据
 class HttpUtils {

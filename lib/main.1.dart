@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart'; //导入包
-import 'package:myApp/views/widgets/bottom_navigationbar/bottom_navigation_widget.dart';
+// import 'package:myApp/views/widgets/bottom_navigationbar/bottom_navigation_widget.dart';
 import 'package:myApp/views/widgets/bottom_navigationbar/navigation_keep_alive.dart';
 
 void main() => runApp(

@@ -11,6 +11,7 @@ class SplashPage extends StatefulWidget {
 
 class SplashPageState extends State<SplashPage> {
   TimerUtil _timerUtil;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   List<String> _guideList = [
     Utils.getImgPath('guide1'),
@@ -30,61 +31,34 @@ class SplashPageState extends State<SplashPage> {
   int _status = 0;
   int _count = 3;
 
-  SplashModel _splashModel;
-
   @override
   void initState() {
     super.initState();
-    _loadSplashData();
     _initAsync();
   }
 
-  void _loadSplashData() async {
-    await SpUtil.getInstance();
-    _splashModel = SpHelper.getSplashModel();
-    if (_splashModel != null) {
-      setState(() {});
-    }
-    HttpUtils httpUtil = new HttpUtils();
-    httpUtil.getSplash().then((model) {
-      if (!ObjectUtil.isEmpty(model.imgUrl)) {
-        if (_splashModel == null || (_splashModel.imgUrl != model.imgUrl)) {
-          SpHelper.putObject(Constant.key_splash_model, model);
-          setState(() {
-            _splashModel = model;
-          });
-        }
-      } else {
-        SpHelper.putObject(Constant.key_splash_model, null);
-      }
-    });
+  //保存界面的输入选择信息
+  void saveInfo() async {
+    final SharedPreferences prefs = await _prefs;
+    prefs.setBool("isFirst", true);
   }
 
-  void _initAsync() {
-    Observable.just(1).delay(new Duration(milliseconds: 500)).listen((_) {
-      //SpUtil.putBool(Constant.key_guide_images, false);
-      if (SpUtil.getBool(Constant.key_guide_images) != true &&
-          ObjectUtil.isNotEmpty(_guideList)) {
-        _initBanner();
-      } else {
-        _initSplash();
-      }
-    });
+  void _initAsync() async {
+    final SharedPreferences prefs = await _prefs;
+    final isFirst = prefs.getBool("isFirst");
+    print("缓存中获取的$isFirst");
+    if (isFirst == null) {
+      _initBanner();
+    } else {
+      _initSplash();
+    }
   }
 
   void _initSplash() {
-    _splashModel = SpHelper.getSplashModel();
-    if (_splashModel == null) {
-      _goMain();
-    } else {
-      _doCountDown();
-    }
+    _doCountDown();
   }
 
   void _doCountDown() {
-    setState(() {
-      _status = 1;
-    });
     _timerUtil = new TimerUtil(mTotalTime: 3 * 1000);
     _timerUtil.setOnTimerTickCallback((int tick) {
       double _tick = tick / 1000;
@@ -101,7 +75,7 @@ class SplashPageState extends State<SplashPage> {
   void _initBanner() {
     _initBannerData();
     setState(() {
-      _status = 2;
+      _status = 1;
     });
   }
 
@@ -129,7 +103,7 @@ class SplashPageState extends State<SplashPage> {
                 margin: EdgeInsets.only(bottom: 50.0),
                 child: new InkWell(
                   onTap: () {
-                    SpUtil.putBool(Constant.key_guide_images, true);
+                    saveInfo();
                     _goMain();
                   },
                   child: new Container(
@@ -177,7 +151,7 @@ class SplashPageState extends State<SplashPage> {
 
   Widget _buildBanner() {
     return new Offstage(
-      offstage: !(_status == 2),
+      offstage: (_status == 0),
       child: ObjectUtil.isEmpty(_bannerList)
           ? new Container()
           : new Swiper(
@@ -194,18 +168,9 @@ class SplashPageState extends State<SplashPage> {
   }
 
   Widget _buildAdWidget() {
-    if (_splashModel == null) {
-      return new Container();
-    }
     return new Offstage(
-      offstage: !(_status == 1),
+      offstage: (_status == 1),
       child: new InkWell(
-        onTap: () {
-          if (ObjectUtil.isEmpty(_splashModel.url)) return;
-          _goMain();
-          NavigatorUtil.pushWeb(context,
-              title: _splashModel.title, url: _splashModel.url);
-        },
         child: Stack(
           alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
           children: <Widget>[
@@ -214,12 +179,6 @@ class SplashPageState extends State<SplashPage> {
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill),
-            // child: new CachedNetworkImage(
-            //   width: double.infinity,
-            //   height: double.infinity,
-            //   fit: BoxFit.fill,
-            //   imageUrl: _splashModel.imgUrl,
-            // ),
             Positioned(
               top: 100.0,
               child: Text(
@@ -235,7 +194,7 @@ class SplashPageState extends State<SplashPage> {
 
   Widget _buildSplash() {
     return new Offstage(
-      offstage: !(_status != 2),
+      offstage: (_status == 1),
       child: new Align(
         alignment: Alignment.bottomCenter,
         child: new Container(
@@ -244,14 +203,8 @@ class SplashPageState extends State<SplashPage> {
           child: new Stack(
             children: <Widget>[
               new Center(
-                // child: Image.asset(
-                //   Utils.getImgPath(Ids.icon_splash_logo),
-                //   width: 120,
-                //   height: 90,
-                //   //fit: BoxFit.cover,
-                // ),//滴滴标志
                 child: Image(
-                    image: AssetImage("assets/nothing.png"), width: 100.0),
+                    image: AssetImage("assets/didi_logo.png"), width: 100.0),
               ),
               _buildCountDown()
             ],
@@ -263,7 +216,7 @@ class SplashPageState extends State<SplashPage> {
 
   Widget _buildCountDown() {
     return new Offstage(
-      offstage: !(_status == 1),
+      offstage: (_status == 1),
       child: new Align(
         alignment: Alignment.bottomRight,
         child: new InkWell(
@@ -318,6 +271,7 @@ class SplashPageState extends State<SplashPage> {
   @override
   void dispose() {
     super.dispose();
-    if (_timerUtil != null) _timerUtil.cancel(); //记得中dispose里面把timer cancel。
+    if (_timerUtil != null)
+      _timerUtil.cancel(); //���得中dispose里面���timer cancel。
   }
 }
