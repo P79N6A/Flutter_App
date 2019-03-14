@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myApp/views/pages/airplay_screen.dart';
 import 'package:myApp/views/pages/email_screen.dart';
-import 'package:myApp/views/pages/home_screen.dart';
+import 'package:myApp/views/pages/home_screen/index.dart';
 import 'package:myApp/views/pages/pages_screen.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
