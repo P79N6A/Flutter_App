@@ -8,13 +8,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.8"
-  azlistview:
-    dependency: "direct main"
-    description:
-      name: azlistview
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -36,20 +29,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.14.11"
-  common_utils:
-    dependency: "direct main"
-    description:
-      name: common_utils
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.1.1"
-  cookie_jar:
-    dependency: transitive
-    description:
-      name: cookie_jar
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.8"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -57,27 +36,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"
-  decimal:
-    dependency: transitive
-    description:
-      name: decimal
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.3"
-  device_info:
-    dependency: "direct main"
-    description:
-      name: device_info
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.0"
-  dio:
-    dependency: "direct main"
-    description:
-      name: dio
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.17"
   english_words:
     dependency: "direct main"
     description:
@@ -85,27 +43,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.1.5"
-  fluintl:
-    dependency: "direct main"
-    description:
-      name: fluintl
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.1.2"
-  flukit:
-    dependency: "direct main"
-    description:
-      name: flukit
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.0"
-  flustars:
-    dependency: "direct main"
-    description:
-      name: flustars
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.2.5"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -128,13 +65,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.15.7"
-  lpinyin:
-    dependency: "direct main"
-    description:
-      name: lpinyin
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.7"
   matcher:
     dependency: transitive
     description:
@@ -163,13 +93,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.4.0"
-  pull_to_refresh:
-    dependency: "direct main"
-    description:
-      name: pull_to_refresh
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.1.6"
   quiver:
     dependency: transitive
     description:
@@ -177,20 +100,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.1"
-  rational:
-    dependency: transitive
-    description:
-      name: rational
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.1"
-  rxdart:
-    dependency: "direct main"
-    description:
-      name: rxdart
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.18.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -231,13 +140,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.4"
-  synchronized:
-    dependency: transitive
-    description:
-      name: synchronized
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.5.3+2"
   term_glyph:
     dependency: transitive
     description:
@@ -259,13 +161,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.1.6"
-  url_launcher:
-    dependency: "direct main"
-    description:
-      name: url_launcher
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "4.2.0+3"
   vector_math:
     dependency: transitive
     description:
@@ -273,13 +168,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.8"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      name: webview_flutter
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.3.4"
 sdks:
   dart: ">=2.1.0 <3.0.0"
-  flutter: ">=0.11.9 <2.0.0"
+  flutter: ">=0.1.4 <2.0.0"

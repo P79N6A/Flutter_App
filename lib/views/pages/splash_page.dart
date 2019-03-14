@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myApp/common/component_index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:myApp/views/widgets/swiper/swiper.dart';
+import 'package:myApp/utils/index.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -30,6 +31,7 @@ class SplashPageState extends State<SplashPage> {
 
   int _status = 0;
   int _count = 3;
+  int _time = 5; //广告倒计时时间
 
   @override
   void initState() {
@@ -59,7 +61,7 @@ class SplashPageState extends State<SplashPage> {
   }
 
   void _doCountDown() {
-    _timerUtil = new TimerUtil(mTotalTime: 3 * 1000);
+    _timerUtil = new TimerUtil(mTotalTime: _time * 1000);
     _timerUtil.setOnTimerTickCallback((int tick) {
       double _tick = tick / 1000;
       setState(() {
@@ -93,8 +95,7 @@ class SplashPageState extends State<SplashPage> {
             new Center(
               child: new Text(
                 _guideInfoList[i],
-                style: new TextStyle(
-                    fontSize: Dimens.font_sp20, color: Colors.white),
+                style: new TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
             new Align(
@@ -109,18 +110,17 @@ class SplashPageState extends State<SplashPage> {
                   child: new Container(
                     width: 185,
                     alignment: Alignment.center,
-                    height: Dimens.btn_h_48,
+                    height: 48,
                     child: new Text(
                       '立即启程',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white, fontSize: Dimens.font_sp14),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                     decoration: new BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        color: Colours.white_19,
-                        border: new Border.all(
-                            width: Dimens.border_width, color: Colors.white70)),
+                        color: Color(0X19FFFFFF),
+                        border:
+                            new Border.all(width: 0.33, color: Colors.white70)),
                   ),
                 ),
               ),
@@ -139,8 +139,7 @@ class SplashPageState extends State<SplashPage> {
             new Center(
               child: new Text(
                 _guideInfoList[i],
-                style: new TextStyle(
-                    fontSize: Dimens.font_sp20, color: Colors.white),
+                style: new TextStyle(fontSize: 20.0, color: Colors.white),
               ),
             )
           ],
@@ -162,7 +161,7 @@ class SplashPageState extends State<SplashPage> {
                   spacing: 4,
                   padding: EdgeInsets.only(bottom: 32.0),
                   itemColor: Colors.white,
-                  itemActiveColor: Colours.app_main),
+                  itemActiveColor: Color(0xFFFC9153)),
               children: _bannerList),
     );
   }
@@ -225,7 +224,7 @@ class SplashPageState extends State<SplashPage> {
           },
           child: new Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(30),
+            margin: EdgeInsets.all(25),
             child: new RichText(
               textAlign: TextAlign.center,
               text: new TextSpan(children: <TextSpan>[
@@ -233,22 +232,57 @@ class SplashPageState extends State<SplashPage> {
                     style: new TextStyle(fontSize: 14, color: Colors.orange),
                     text: "$_count"),
                 new TextSpan(
-                    style:
-                        new TextStyle(fontSize: 12, color: Colours.text_normal),
-                    text: " 跳过")
+                  style: new TextStyle(fontSize: 12, color: Colors.black54),
+                  text: " 跳过",
+                )
               ]),
             ),
             height: 30,
             width: 60,
             decoration: new BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                border: new Border.all(
-                    width: Dimens.border_width, color: Colours.gray_cc)),
+                border: new Border.all(width: 0.33, color: Color(0xffcccccc))),
           ),
         ),
       ),
     );
   }
+
+  // Widget _buildCountDown() {
+  //   return new Offstage(
+  //     offstage: (_status == 1),
+  //     child: new Align(
+  //       alignment: Alignment.bottomRight,
+  //       child: new InkWell(
+  //         onTap: () {
+  //           _goMain();
+  //         },
+  //         child: new Container(
+  //           alignment: Alignment.center,
+  //           margin: EdgeInsets.all(30),
+  //           child: new RichText(
+  //             textAlign: TextAlign.center,
+  //             text: new TextSpan(children: <TextSpan>[
+  //               new TextSpan(
+  //                   style: new TextStyle(fontSize: 14, color: Colors.orange),
+  //                   text: "$_count"),
+  //               new TextSpan(
+  //                   style:
+  //                       new TextStyle(fontSize: 12, color: Colors.orange),
+  //                   text: " 跳过")
+  //             ]),
+  //           ),
+  //           height: 30,
+  //           width: 60,
+  //           decoration: new BoxDecoration(
+  //               borderRadius: BorderRadius.all(Radius.circular(15.0)),
+  //               border: new Border.all(
+  //                   width: 0.33, color: Color(0xffcccccc)),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   void _goMain() {
     Navigator.of(context).pushReplacementNamed('/MainPage');
