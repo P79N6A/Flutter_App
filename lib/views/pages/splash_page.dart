@@ -85,7 +85,7 @@ class SplashPageState extends State<SplashPage> {
     setState(() {
       _status = 1;
     });
-    _timerUtil = new TimerUtil(mTotalTime: 1000 * 1000);
+    _timerUtil = new TimerUtil(mTotalTime: 3 * 1000);
     _timerUtil.setOnTimerTickCallback((int tick) {
       double _tick = tick / 1000;
       setState(() {
