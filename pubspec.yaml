@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #国际化的处理包
   flutter_localizations:
     sdk: flutter
 
@@ -54,6 +55,8 @@ dependencies:
   webview_flutter: ^0.3.3+1
   # https://github.com/flutterchina/flukit.
   flukit: ^1.0.0
+  #key-value 持久存储
+  shared_preferences: 0.4.3
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myApp/common/component_index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -60,7 +61,7 @@ class SplashPageState extends State<SplashPage> {
   }
 
   void _initAsync() {
-    Observable.just(1).delay(new Duration(milliseconds: 5)).listen((_) {
+    Observable.just(1).delay(new Duration(milliseconds: 500)).listen((_) {
       //SpUtil.putBool(Constant.key_guide_images, false);
       if (SpUtil.getBool(Constant.key_guide_images) != true &&
           ObjectUtil.isNotEmpty(_guideList)) {
@@ -84,7 +85,7 @@ class SplashPageState extends State<SplashPage> {
     setState(() {
       _status = 1;
     });
-    _timerUtil = new TimerUtil(mTotalTime: 20 * 1000);
+    _timerUtil = new TimerUtil(mTotalTime: 1000 * 1000);
     _timerUtil.setOnTimerTickCallback((int tick) {
       double _tick = tick / 1000;
       setState(() {
@@ -205,15 +206,28 @@ class SplashPageState extends State<SplashPage> {
           NavigatorUtil.pushWeb(context,
               title: _splashModel.title, url: _splashModel.url);
         },
-        child: new Container(
-          alignment: Alignment.center,
-          child: Image(image: AssetImage("assets/logon.png"), width: 100.0),
-          // child: new CachedNetworkImage(
-          //   width: double.infinity,
-          //   height: double.infinity,
-          //   fit: BoxFit.fill,
-          //   imageUrl: _splashModel.imgUrl,
-          // ),
+        child: Stack(
+          alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+          children: <Widget>[
+            Image(
+                image: AssetImage("assets/logon.png"),
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill),
+            // child: new CachedNetworkImage(
+            //   width: double.infinity,
+            //   height: double.infinity,
+            //   fit: BoxFit.fill,
+            //   imageUrl: _splashModel.imgUrl,
+            // ),
+            Positioned(
+              top: 100.0,
+              child: Text(
+                "这里应该是个广告!!!",
+                style: TextStyle(color: Colors.red, fontSize: 40),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -258,7 +272,7 @@ class SplashPageState extends State<SplashPage> {
           },
           child: new Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(12),
+            margin: EdgeInsets.all(30),
             child: new RichText(
               textAlign: TextAlign.center,
               text: new TextSpan(children: <TextSpan>[
