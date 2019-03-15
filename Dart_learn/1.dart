@@ -1,15 +1,7 @@
-//定义打印数字方法
-printNumber(num Number) {
-  print("The number is $Number");
-}
-
-//执行程序入口
-void main() {
-  //定义初始化一个变量
-  var number;
-  int _status = 0;
-  print((_status == 1));
-
-  //调用打印数字方法
-  printNumber(number);
+void main(List<String> args) {
+  var names = new List<String>();
+  names.addAll(['Seth', 'Kathy', 'Lars']);
+  var nameSet = new Set<String>.from(names);
+  print(nameSet);
+  var views = new Map<int, String>();
 }
