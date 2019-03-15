@@ -49,4 +49,9 @@ void main() {
   // 根据语法提示： List.sort([(int, int) → int compare]) → void
   list9.sort((a, b) => b.compareTo(a));
   print(list9);
+  print(list1);
+  print(list2);
+  print(list7);
+  print(list);
+  print(list8);
 }

@@ -50,7 +50,7 @@ void main() {
   //检索Map是否包含某个Value
   print(map11.containsValue('Android')); //输出：true
 
-  map11.forEach((key, value) {
-    print("key:${key}, value:${value}");
-  });
+  // map11.forEach((key, value) {
+  //   print("key:${key}, value:${value}");
+  // });
 }

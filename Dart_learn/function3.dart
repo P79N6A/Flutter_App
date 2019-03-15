@@ -2,8 +2,6 @@ import 'dart:math';
 
 // export 'src/DartProject_base.dart';
 
-// TODO: Export any libraries intended for clients of this package.
-
 class Point {
   final num x;
   final num y;

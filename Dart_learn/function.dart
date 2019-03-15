@@ -7,6 +7,7 @@ void main(List<String> args) {
   isNoble2(int num) => print(list[num] != null);
 
   isNoble(1);
+  isNoble2(2);
 
   //定义一个方法 [String device]是可选位置参数 也就是调用这个方法可以不传这个参数
   String say(String from, String msg, [String device]) {

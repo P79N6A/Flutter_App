@@ -3,5 +3,4 @@ void main(List<String> args) {
   names.addAll(['Seth', 'Kathy', 'Lars']);
   var nameSet = new Set<String>.from(names);
   print(nameSet);
-  var views = new Map<int, String>();
 }
