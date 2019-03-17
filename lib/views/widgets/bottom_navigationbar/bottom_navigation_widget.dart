@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myApp/views/pages/airplay_screen.dart';
-import 'package:myApp/views/pages/email_screen.dart';
+import 'package:myApp/views/pages/OpenApi_page/index.dart';
 import 'package:myApp/views/pages/home_screen/index.dart';
 import 'package:myApp/views/pages/pages_screen.dart';
 
@@ -18,7 +18,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   void initState() {
     list
       ..add(HomeScreen())
-      ..add(EmailScreen())
+      ..add(OpenScreen())
       ..add(PagesScreen())
       ..add(AirPlayScreen());
     super.initState();

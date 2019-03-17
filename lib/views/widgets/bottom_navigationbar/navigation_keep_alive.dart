@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:myApp/views/pages/airplay_screen.dart';
-import 'package:myApp/views/pages/email_screen.dart';
+import 'package:myApp/views/pages/OpenApi_page/index.dart';
 import 'package:myApp/views/pages/home_screen/index.dart';
 import 'package:myApp/views/pages/pages_screen.dart';
 
@@ -29,8 +29,8 @@ class _NavigationKeepAliveState extends State<NavigationKeepAlive>
       body: PageView(
         controller: _controller,
         children: <Widget>[
+          OpenScreen(),
           HomeScreen(),
-          EmailScreen(),
           PagesScreen(),
           AirPlayScreen(),
         ],
@@ -53,8 +53,9 @@ class _NavigationKeepAliveState extends State<NavigationKeepAlive>
         },
         items: [
           BottomNavigationBarItem(
+              icon: Icon(Icons.language), title: Text('业界动态')),
+          BottomNavigationBarItem(
               icon: Icon(Icons.extension), title: Text('组件')),
-          BottomNavigationBarItem(icon: Icon(Icons.email), title: Text('邮件')),
           BottomNavigationBarItem(icon: Icon(Icons.pages), title: Text('页面')),
           BottomNavigationBarItem(icon: Icon(Icons.airplay), title: Text('我的')),
         ],

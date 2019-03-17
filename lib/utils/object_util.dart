@@ -1,11 +1,3 @@
-/**
- * @Author: thl
- * @GitHub: https://github.com/Sky24n
- * @Description: Object Util.
- * @Date: 2018/9/8
- */
-
-/// Object Util.
 class ObjectUtil {
   /// Returns true if the string is null or 0-length.
   static bool isEmptyString(String str) {
