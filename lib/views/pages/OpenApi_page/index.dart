@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:myApp/views/pages/OpenApi_page/list_view_item.dart';
 import 'package:myApp/views/pages/OpenApi_page/list_refresh.dart';
 import 'package:myApp/views/pages/OpenApi_page/open_page_item.dart';
+import 'package:myApp/views/pages/main_left_page.dart';
 import 'package:myApp/utils/index.dart';
 
 class OpenScreen extends StatefulWidget {
@@ -12,16 +13,65 @@ class OpenScreen extends StatefulWidget {
   createState() => new _OpenScreenState();
 }
 
-class _OpenScreenState extends State<OpenScreen> {
+class _OpenScreenState extends State with SingleTickerProviderStateMixin {
+  ScrollController _scrollViewController;
+  TabController _tabController;
+  List tabs = ["新闻", "历史", "图片"];
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
+  void initState() {
+    super.initState();
+    _scrollViewController = ScrollController();
+    _tabController =
+        // TabController(vsync: this, length: 6); // 和下面的 TabBar.tabs 数量对应
+        TabController(length: tabs.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _scrollViewController.dispose();
+    _tabController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     // final wordPair = new WordPair.random();
     // return new Text(wordPair.asPascalCase);
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('ListView.builder'),
-      ),
-      body: FirstPage(),
+    return new DefaultTabController(
+      length: tabs.length,
+      child: Scaffold(
+          appBar: new AppBar(
+            // title: new Text('首页'),
+            key: _scaffoldKey,
+            // leading: new Container(
+            //   decoration: BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     image: DecorationImage(
+            //       image: AssetImage("assets/nothing.png"),
+            //     ),
+            //   ),
+            // ),
+            centerTitle: true,
+            title: TabBar(
+              isScrollable: true,
+              labelPadding: EdgeInsets.all(12.0),
+              indicatorSize: TabBarIndicatorSize.label,
+              controller: _tabController,
+              tabs: tabs.map((e) => Tab(text: e)).toList(),
+            ),
+            actions: <Widget>[
+              new IconButton(icon: new Icon(Icons.search), onPressed: () {})
+            ],
+          ),
+          body: TabBarView(controller: _tabController, children: <Widget>[
+            FirstPage(),
+            Text('历史页面'),
+            Text('图片页面'),
+          ]),
+          drawer: new Drawer(
+            child: new MainLeftPage(),
+          )),
     );
   }
 }
