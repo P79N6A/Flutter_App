@@ -93,6 +93,7 @@ class _MyHomePageState extends State with SingleTickerProviderStateMixin {
       ),
       body: TabBarView(controller: _tabController, children: <Widget>[
         new Container(
+          color: Colors.blueGrey,
           child: new Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

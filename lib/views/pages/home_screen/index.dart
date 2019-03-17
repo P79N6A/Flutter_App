@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:myApp/views/pages/home_screen/ListView/builder.dart';
+import 'package:myApp/views/pages/home_screen/ListView/list.dart';
+import 'package:myApp/views/pages/home_screen/ListView/warp_demo.dart';
+import 'package:myApp/views/pages/home_screen/Button/index.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -7,99 +10,300 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final _suggestions = <WordPair>[];
-  final _saved = new Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('组件'),
-        actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
-        ],
       ),
-      body: _buildSuggestions(),
+      body: GridHomePage(),
     );
   }
+}
 
-  Widget _buildSuggestions() {
-    return new ListView.separated(
-        scrollDirection: Axis.vertical,
-        itemCount: 100, // item 的个数
-        padding: const EdgeInsets.all(16.0),
-        separatorBuilder: (BuildContext context, int index) =>
-            Divider(height: 1.0, color: Colors.blue),
-        itemBuilder: (context, i) {
-          // final index = i;
-          // 如果是建议列表中最后一个单词对
-          if (i >= _suggestions.length) {
-            // ...接着再生成10个单词对，然后添加到建议列表
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          return _buildRow(_suggestions[i], i);
-        });
-  }
+class GridHomePage extends StatefulWidget {
+  _GridHomePage createState() => _GridHomePage();
+}
 
-  Widget _buildRow(WordPair pair, index) {
-    final alreadySaved = _saved.contains(pair);
-    return new ListTile(
-      title: new Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ), //item标题
-      leading: Icon(Icons.phone), //item 前置图标
-      subtitle: Text(
-          "phone: $index$index$index$index$index$index$index$index$index$index$index$index"), // item 副标题
-      trailing: new Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ), //item后置图标
-      isThreeLine: false, //是否三行显示
-      dense: true, // item 直观感受是整体大小
-      contentPadding: EdgeInsets.all(2.0), // item 内容内边距
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      }, //item 点击事件
-      onLongPress: () {
-        print('长按:$index');
-      }, //长按事件
-    );
-  }
-
-  void _pushSaved() {
-    Navigator.of(context).push(
-      new MaterialPageRoute(
-        builder: (context) {
-          final tiles = _saved.map(
-            (pair) {
-              return new ListTile(
-                title: new Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text('Saved Suggestions'),
-            ),
-            body: new ListView(children: divided),
-          );
-        },
-      ),
-    );
+class _GridHomePage extends State<GridHomePage> {
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            color: Colors.blueGrey[100],
+            child: GridView.count(
+                crossAxisCount: 3,
+                mainAxisSpacing: 1.0,
+                crossAxisSpacing: 1.0,
+                padding: const EdgeInsets.all(5.0),
+                // border: new Border.all(width: 10.0, color: Colors.black38),
+                childAspectRatio: 1.3,
+                children: <Widget>[
+                  Card(
+                      clipBehavior: Clip.antiAlias, // 根据设置裁剪内容
+                      // color: Colors.green, //  卡片背景颜色
+                      elevation: 20.0, // 卡片的z坐标,控制卡片下面的阴影大小
+                      // margin: EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            //导航到新路由
+                            // Navigator.pushNamed(context, "page_Text");
+                            Navigator.push(context,
+                                new MaterialPageRoute(builder: (context) {
+                              return new ListViewbuilder();
+                            }));
+                          },
+                          color: Colors.white, //按钮背景颜色
+                          highlightColor: Colors.grey, //按钮按下时的背景颜色
+                          colorBrightness: Brightness.dark, //按钮主题，默认是浅色主题
+                          splashColor: Colors.blue, //点击时，水波动画中水波的颜色
+                          elevation: 2.0, //正常状态下的阴影
+                          highlightElevation: 8.0, //按下时的阴影
+                          disabledElevation: 0.0, // 禁用时的阴影
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.free_breakfast,
+                                color: Colors.blue,
+                                size: 50,
+                              ),
+                              Text("ListView",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.deepPurple)),
+                            ],
+                          ))),
+                  Card(
+                      clipBehavior: Clip.antiAlias, // 根据设置裁剪内容
+                      // color: Colors.green, //  卡片背景颜色
+                      elevation: 20.0, // 卡片的z坐标,控制卡片下面的阴影大小
+                      // margin: EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            //导航到新路由
+                            // Navigator.pushNamed(context, "page_Text");
+                            Navigator.push(context,
+                                new MaterialPageRoute(builder: (context) {
+                              return new ListViewDome();
+                            }));
+                          },
+                          color: Colors.white, //按钮背景颜色
+                          highlightColor: Colors.grey, //按钮按下时的背景颜色
+                          colorBrightness: Brightness.dark, //按钮主题，默认是浅色主题
+                          splashColor: Colors.blue, //点击时，水波动画中水波的颜色
+                          elevation: 2.0, //正常状态下的阴影
+                          highlightElevation: 8.0, //按下时的阴影
+                          disabledElevation: 0.0, // 禁用时的阴影
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.free_breakfast,
+                                color: Colors.blue,
+                                size: 50,
+                              ),
+                              Text("ListView2",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.deepPurple)),
+                            ],
+                          ))),
+                  Card(
+                      clipBehavior: Clip.antiAlias, // 根据设置裁剪内容
+                      // color: Colors.green, //  卡片背景颜色
+                      elevation: 20.0, // 卡片的z坐标,控制卡片下面的阴影大小
+                      // margin: EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            //导航到新路由
+                            // Navigator.pushNamed(context, "page_Text");
+                            Navigator.push(context,
+                                new MaterialPageRoute(builder: (context) {
+                              return new PageButton();
+                            }));
+                          },
+                          color: Colors.white, //按钮背景颜色
+                          highlightColor: Colors.grey, //按钮按下时的背景颜色
+                          colorBrightness: Brightness.dark, //按钮主题，默认是浅色主题
+                          splashColor: Colors.blue, //点击时，水波动画中水波的颜色
+                          elevation: 2.0, //正常状态下的阴影
+                          highlightElevation: 8.0, //按下时的阴影
+                          disabledElevation: 0.0, // 禁用时的阴影
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.radio_button_checked,
+                                color: Colors.green,
+                                size: 50,
+                              ),
+                              Text("Button",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.deepPurple)),
+                            ],
+                          ))),
+                  Card(
+                      clipBehavior: Clip.antiAlias, // 根据设置裁剪内容
+                      // color: Colors.green, //  卡片背景颜色
+                      elevation: 20.0, // 卡片的z坐标,控制卡片下面的阴影大小
+                      // margin: EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                          onPressed: () {
+                            //导航到新路由
+                            // Navigator.pushNamed(context, "page_Text");
+                            Navigator.push(context,
+                                new MaterialPageRoute(builder: (context) {
+                              return new WarpDemo();
+                            }));
+                          },
+                          color: Colors.white, //按钮背景颜色
+                          highlightColor: Colors.grey, //按钮按下时的背景颜色
+                          colorBrightness: Brightness.dark, //按钮主题，默认是浅色主题
+                          splashColor: Colors.blue, //点击时，水波动画中水波的颜色
+                          elevation: 2.0, //正常状态下的阴影
+                          highlightElevation: 8.0, //按下时的阴影
+                          disabledElevation: 0.0, // 禁用时的阴影
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.airport_shuttle,
+                                color: Colors.yellow,
+                                size: 50,
+                              ),
+                              Text("GridView",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.deepPurple)),
+                            ],
+                          ))),
+                  GridTile(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Icon(
+                        Icons.airport_shuttle,
+                        color: Colors.green,
+                        size: 50,
+                      ),
+                    ),
+                    footer: Text("2",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  GridTile(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Icon(
+                        Icons.all_inclusive,
+                        color: Colors.blue,
+                        size: 50,
+                      ),
+                    ),
+                    footer: Text("3",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  GridTile(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Icon(
+                        Icons.beach_access,
+                        color: Colors.yellow,
+                        size: 50,
+                      ),
+                    ),
+                    footer: Text("4",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  GridTile(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Icon(
+                        Icons.cake,
+                        color: Colors.brown,
+                        size: 50,
+                      ),
+                    ),
+                    footer: Text("5",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  GridTile(
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: Icon(
+                        Icons.free_breakfast,
+                        color: Colors.purple,
+                        size: 50,
+                      ),
+                    ),
+                    footer: Text("6",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  Card(
+                    child: GridTile(
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: Icon(
+                          Icons.theaters,
+                          color: Colors.purple,
+                          size: 40,
+                        ),
+                      ),
+                      footer: Text("7",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 20, color: Colors.red)),
+                    ),
+                  ),
+                  Card(
+                    child: GridTile(
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: Icon(
+                          Icons.free_breakfast,
+                          color: Colors.purple,
+                          size: 40,
+                        ),
+                      ),
+                      footer: Text("8",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 20, color: Colors.red)),
+                    ),
+                  ),
+                  Card(
+                      clipBehavior: Clip.antiAlias, // 根据设置裁剪内容
+                      color: Colors.green, //  卡片背景颜色
+                      elevation: 20.0, // 卡片的z坐标,控制卡片下面的阴影大小
+                      // margin: EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                        onPressed: () => {},
+                        color: Colors.white, //按钮背景颜色
+                        highlightColor: Colors.blue[700], //按钮按下时的背景颜色
+                        colorBrightness: Brightness.dark, //按钮主题，默认是浅色主题
+                        splashColor: Colors.grey, //点击时，水波动画中水波的颜色
+                        // shape: RoundedRectangleBorder(
+                        //     borderRadius: BorderRadius.circular(20.0)), //外形
+                        elevation: 2.0, //正常状态下的阴影
+                        highlightElevation: 8.0, //按下时的阴影
+                        disabledElevation: 0.0, // 禁用时的阴影
+                        child: GridTile(
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                            child: Icon(
+                              Icons.free_breakfast,
+                              color: Colors.green,
+                              size: 40,
+                            ),
+                          ),
+                          footer: Text("9",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.blue)),
+                        ),
+                      ))
+                ])));
   }
 }
