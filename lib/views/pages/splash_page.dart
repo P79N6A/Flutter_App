@@ -201,10 +201,10 @@ class SplashPageState extends State<SplashPage> {
           color: Colors.white,
           child: new Stack(
             children: <Widget>[
-              new Center(
-                child: Image(
-                    image: AssetImage("assets/didi_logo.png"), width: 100.0),
-              ),
+              // new Center(
+              //   child: Image(
+              //       image: AssetImage("assets/didi_logo.png"), width: 100.0),
+              // ),
               _buildCountDown()
             ],
           ),

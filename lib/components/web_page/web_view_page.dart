@@ -17,6 +17,9 @@ class WebViewPage extends StatefulWidget {
 }
 
 class _WebViewPageState extends State<WebViewPage> {
+  final flutterWebViewPlugin = FlutterWebviewPlugin();
+
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   // bool _hasCollected = false;
   // String _router = '';
   // var _collectionIcons;
@@ -24,24 +27,30 @@ class _WebViewPageState extends State<WebViewPage> {
 
   // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
-  // void initState() {
-  //   super.initState();
-  //   _collectionControl
-  //       .getRouterByName(Uri.encodeComponent(widget.title.trim()))
-  //       .then((list) {
-  //     list.forEach((item) {
-  //       if (widget.title.trim() == item['name']) {
-  //         _router = item['router'];
-  //       }
-  //     });
-  //     if (mounted) {
-  //       setState(() {
-  //         _hasCollected = list.length > 0;
-  //       });
-  //     }
-  //   });
-  // }
+  void initState() {
+    super.initState();
+    flutterWebViewPlugin.close();
+    // _collectionControl
+    //     .getRouterByName(Uri.encodeComponent(widget.title.trim()))
+    //     .then((list) {
+    //   list.forEach((item) {
+    //     if (widget.title.trim() == item['name']) {
+    //       _router = item['router'];
+    //     }
+    //   });
+    //   if (mounted) {
+    //     setState(() {
+    //       _hasCollected = list.length > 0;
+    //     });
+    //   }
+    // });
+  }
 
+  @override
+  void dispose() {
+    flutterWebViewPlugin.dispose();
+    super.dispose();
+  }
   // 点击收藏按钮
   // _getCollection() {
   //   if (_hasCollected) {
@@ -93,13 +102,13 @@ class _WebViewPageState extends State<WebViewPage> {
     // } else {
     //   _collectionIcons = Icons.favorite_border;
     // }
-    return Scaffold(
-      // key: _scaffoldKey,
+    return WebviewScaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
           new IconButton(
-            tooltip: 'goBack home',
+            tooltip: '收藏',
             onPressed: () => {},
             // onPressed: _getCollection,
             icon: Icon(
@@ -109,21 +118,22 @@ class _WebViewPageState extends State<WebViewPage> {
           ),
         ],
       ),
-      body: SafeArea(
-          child: WebviewScaffold(
-        url: widget.url,
-        hidden: false,
-        initialChild: Container(
-          height: MediaQuery.of(context).size.height,
-          color: Colors.redAccent,
-          child: const Center(
-            child: Text('Waiting.....'),
-          ),
+      url: widget.url,
+      hidden: true,
+      // initialChild: Container(
+      //   color: Colors.red,
+      //   child: const Center(
+      //     child: Text('Waiting.....'),
+      //   ),
+      // ),
+      withZoom: true,
+      withLocalStorage: true,
+      withJavascript: true,
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: <Widget>[],
         ),
-        withZoom: false,
-        withLocalStorage: true,
-        withJavascript: true,
-      )),
+      ),
     );
   }
 }

@@ -28,6 +28,7 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData.light().copyWith(
         //蓝色主题
         primaryColor: Colors.blueGrey,
+        // platform: TargetPlatform.iOS,
         //primaryColorLight: _themeColor,
         //iconTheme: new IconThemeData(color: Colors.green),
         // primaryIconTheme: new IconThemeData(color: Colors.deepPurple),

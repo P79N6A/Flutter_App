@@ -17,7 +17,6 @@ class _WarpDemoState extends State<WarpDemo> {
   @override
   Widget build(BuildContext context) {
     final mwidth = MediaQuery.of(context).size.width;
-    final mheight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +32,7 @@ class _WarpDemoState extends State<WarpDemo> {
                       opacity: 0.8,
                       child: Container(
                         width: mwidth,
-                        height: mheight,
+                        // height: mheight,
                         color: Colors.white,
                         child: Wrap(
                           children: list,
@@ -52,9 +51,6 @@ class _WarpDemoState extends State<WarpDemo> {
       onTap: () {
         if (list.length < 5000) {
           setState(() {
-            list.insert(list.length - 1, buildPhoto(list.length - 1));
-            list.insert(list.length - 1, buildPhoto(list.length - 1));
-            list.insert(list.length - 1, buildPhoto(list.length - 1));
             list.insert(list.length - 1, buildPhoto(list.length - 1));
           });
         }
